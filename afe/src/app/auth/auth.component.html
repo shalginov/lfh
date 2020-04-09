@@ -1,0 +1,8 @@
+<h1>Form authorization</h1>
+<form (submit)="userAuthClick()">
+  <input type="text" [(ngModel)]="login" name="login" placeholder="Enter login" class="form-control">
+  <br>
+  <input type="text" [(ngModel)]="pass" name="pass" placeholder="Enter password" class="form-control">
+  <br>
+  <button type="submit" class="btn btn-success">Join</button>
+</form>
