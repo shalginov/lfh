@@ -7,6 +7,8 @@ import { HeaderComponent } from './header/header.component';
 import { AuthComponent } from './auth/auth.component';
 import { RegComponent } from './reg/reg.component';
 import { CabComponent } from './cab/cab.component';
+
+import {RouterModule, Routes} from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 
 import {FormsModule} from '@angular/forms';
@@ -16,7 +18,13 @@ import {AuthService} from './auth.service'
 import {HttpModule} from '@angular/http'
 
 
-
+const appRoute : Routes = [
+  {path: '', component: CabComponent},
+  {path: 'auth', component: AuthComponent},
+  {path: 'cab', component: CabComponent},
+  {path: 'reg', component: RegComponent}
+ 
+];
 
 @NgModule({
   declarations: [
@@ -30,6 +38,7 @@ import {HttpModule} from '@angular/http'
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule.forRoot(appRoute),
     FormsModule,
     FlashMessagesModule.forRoot(),
     HttpModule
