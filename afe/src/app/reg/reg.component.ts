@@ -53,14 +53,15 @@ export class RegComponent implements OnInit {
 
 
     this.authServ.regUser(user).subscribe(data => {
-      if(!data.success){
-        this.flashMess.show(data.message, {cssClass: 'alert-danger', timeout: 1500})      
-        this.router.navigate(['/reg'])
-      } else if(data.success) {
-        this.flashMess.show(data.message, {cssClass: 'alert-success', timeout: 1500})      
-        this.router.navigate(['/auth'])
+      if(!("_id" in data)){
+        this.flashMess.show('Пользователь не зарегистрирован', {cssClass: 'alert-danger', timeout: 1500})      
+        this.router.navigate(['/ticket'])
+      } else if("_id" in data) {
+        this.flashMess.show('Пользователь зарегистрирован', {cssClass: 'alert-success', timeout: 1500})      
+        this.router.navigate(['/cab'])
       }
     })
+  
      
    }
    
