@@ -6,14 +6,18 @@ module.exports.add = async function (req, res){
         const maxNum = await Ticket.findOne().sort({date: -1})
             
         const ticket = await new Ticket ({
-            success:true,
-            message:'Заявка создана',
            num: maxNum ? maxNum.num +1 : 0,
-           header: req.body.header,
-           text: req.body.text           
-        }).save()
+           first_name: req.body.first_name,
+           last_name: req.body.last_name,
+           tel: req.body.tel,
+           text: req.body.text,
+           perf: req.body.perf,
+           status: 'open'           
+        }).save()        
         res.status(201).json(ticket)        
     } catch (error) {
+       
+        
         errorHandler(res,error)        
     }
 }

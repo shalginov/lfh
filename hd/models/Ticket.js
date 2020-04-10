@@ -22,15 +22,17 @@ const ticketSchema = new Schema ({
       type:String
     },
     header: {
-      type: String,        
+      type: String
+    },  
+    status: {
+      type: String
     },
     text:{
         type: String,
         require:true
     },
     perf: {
-        ref: 'users_hd',
-        type: Schema.Types.ObjectId
+       type: String
     }
 
 }) 

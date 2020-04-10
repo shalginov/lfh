@@ -54,7 +54,7 @@ module.exports.reg = async function(req, res) {
      if(loginer){
        //Пользователь существует, нужно отправить ошибку
        res.status(409).json({
-         sucess: false,
+         success: false,
          message: 'Такой логин уже есть, попробуйте другой'
        })
      } else {
@@ -62,7 +62,7 @@ module.exports.reg = async function(req, res) {
        const salt = bcrypt.genSaltSync(10)
        const password = req.body.password
        const user = new User({
-        sucess: true,
+        success: true,
         message: 'Пользователь создан',
          login: req.body.login,
          password: bcrypt.hashSync(password, salt),
@@ -75,14 +75,12 @@ module.exports.reg = async function(req, res) {
          await user.save()
          res.status(201).json(user)
        } catch(e){
-         console.log('user'+user+'error'+e);
+         console.log(e);
          
          // Обработать ошибку
          errorHandler(res, e)
        }
-   
-       
-   
-   
-     }
+
+      }
+
     }

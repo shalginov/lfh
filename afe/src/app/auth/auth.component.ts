@@ -29,13 +29,17 @@ export class AuthComponent implements OnInit {
       password: this.pass
     };
 
-    for (const [key, value] of Object.entries(user) ) {
-      if(!this.checkForm.checkInput(value)){
-        this.flashMess.show(`введите ${key} `, {cssClass: 'alert-danger', timeout: 1500})      
+      if(!this.checkForm.checkInput(user.login)){
+        this.flashMess.show('Введите логин', {cssClass: 'alert-danger', timeout: 1500})      
         return false;      
       }
-    }
-    this.authServ.loginUser(user).subscribe(data => {
+
+      if(!this.checkForm.checkInput(user.password)){
+        this.flashMess.show('Введите пароль', {cssClass: 'alert-danger', timeout: 1500})      
+        return false;      
+      }
+
+      this.authServ.loginUser(user).subscribe(data => {
       if(!data.success){
         this.flashMess.show(data.message, {cssClass: 'alert-danger', timeout: 1500})      
         this.router.navigate(['/auth'])

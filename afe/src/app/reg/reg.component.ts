@@ -35,11 +35,23 @@ export class RegComponent implements OnInit {
      password: this.password     
    };
    
-   for (const [key, value] of Object.entries(user) ) {
-    if(!this.checkForm.checkInput(value)){
-      this.flashMess.show(`введите ${key}`, {cssClass: 'alert-danger', timeout: 1500})      
+   
+    if(!this.checkForm.checkInput(user.first_name)){
+      this.flashMess.show(`Введите имя`, {cssClass: 'alert-danger', timeout: 1500})      
       return false;      
     }
+    if(!this.checkForm.checkInput(user.last_name)){
+      this.flashMess.show(`Введите фамилию`, {cssClass: 'alert-danger', timeout: 1500})      
+      return false;      
+    }if(!this.checkForm.checkInput(user.login)){
+      this.flashMess.show(`Введите логин`, {cssClass: 'alert-danger', timeout: 1500})      
+      return false;      
+    }if(!this.checkForm.checkInput(user.password)){
+      this.flashMess.show(`Введите пароль`, {cssClass: 'alert-danger', timeout: 1500})      
+      return false;      
+    }
+
+
     this.authServ.regUser(user).subscribe(data => {
       if(!data.success){
         this.flashMess.show(data.message, {cssClass: 'alert-danger', timeout: 1500})      
@@ -53,6 +65,6 @@ export class RegComponent implements OnInit {
    }
    
 
-  }
-
 }
+
+

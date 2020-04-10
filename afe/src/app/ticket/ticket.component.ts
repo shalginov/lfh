@@ -35,24 +35,37 @@ export class TicketComponent implements OnInit {
       text: this.mes,
       perf: this.perf
     }
-
-    for (const [key, value] of Object.entries(ticket) ) {
-      if(!this.checkForm.checkInput(value)){
-        this.flashMess.show(`поле ${key} не введено`, {cssClass: 'alert-danger', timeout: 1500})      
+   
+   
+      if(!this.checkForm.checkInput(ticket.first_name)){
+        this.flashMess.show('Введите имя', {cssClass: 'alert-danger', timeout: 1500})      
         return false;      
       }
+      if(!this.checkForm.checkInput(ticket.last_name)){
+        this.flashMess.show('Введите фамилию', {cssClass: 'alert-danger', timeout: 1500})      
+        return false;      
+      }
+      if(!this.checkForm.checkInput(ticket.tel)){
+        this.flashMess.show('Введите телефон', {cssClass: 'alert-danger', timeout: 1500})      
+        return false;      
+      }
+      if(!this.checkForm.checkInput(ticket.text)){
+        this.flashMess.show('Напишите сообщение', {cssClass: 'alert-danger', timeout: 1500})      
+        return false;      
+      }
+            
 
       this.ticketServ.addTicket(ticket).subscribe(data => {
-        if(data.success){
-          this.flashMess.show(data.message, {cssClass: 'alert-danger', timeout: 1500})      
+        if(!("_id" in data)){
+          this.flashMess.show('Заявка не создана', {cssClass: 'alert-danger', timeout: 1500})      
           this.router.navigate(['/ticket'])
-        } else if(!data.success) {
-          this.flashMess.show(data.message, {cssClass: 'alert-success', timeout: 1500})      
+        } else if("_id" in data) {
+          this.flashMess.show('Заявка создана', {cssClass: 'alert-success', timeout: 1500})      
           this.router.navigate(['/cab'])
         }
       })
        
-     }
+     
 
 
   }
