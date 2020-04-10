@@ -5,7 +5,7 @@ const userSchema_hd = new Schema ({
     login:{
         type: String,
         required: true,
-        unique: true
+        // unique: true
     },
     password: {
         type: String,
@@ -21,7 +21,7 @@ const userSchema_hd = new Schema ({
     },
     role: {
         type: Number,
-        require:true
+        // require:true
     }
 })
 

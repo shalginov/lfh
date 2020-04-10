@@ -6,6 +6,8 @@ module.exports.add = async function (req, res){
         const maxNum = await Ticket.findOne().sort({date: -1})
             
         const ticket = await new Ticket ({
+            success:true,
+            message:'Заявка создана',
            num: maxNum ? maxNum.num +1 : 0,
            header: req.body.header,
            text: req.body.text           

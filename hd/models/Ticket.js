@@ -5,21 +5,30 @@ const ticketSchema = new Schema ({
     num:{
         type: Number,
         require:true,
-        unique: true
+        // unique: true
     },
     date:{
         type: Date,
         default: Date.now
     },
+    first_name: {
+      type: String,
+      require:true,
+    },
+    last_name: {
+      type: String      
+    },
+    tel: {
+      type:String
+    },
     header: {
-        type: String,
-        require:true
+      type: String,        
     },
     text:{
         type: String,
         require:true
     },
-    performer: {
+    perf: {
         ref: 'users_hd',
         type: Schema.Types.ObjectId
     }

@@ -20,7 +20,7 @@ module.exports.login = async function(req, res) {
     
           res.status(200).json({
             success: true,
-            message:'SUC',
+            message:'Вы вошли в систему',
             token: `Bearer ${token}`,
             user: {
               id: loginer._id,
@@ -55,30 +55,32 @@ module.exports.reg = async function(req, res) {
        //Пользователь существует, нужно отправить ошибку
        res.status(409).json({
          sucess: false,
-         message: 'login exist'
+         message: 'Такой логин уже есть, попробуйте другой'
        })
      } else {
        //Нужно создать пользователя
        const salt = bcrypt.genSaltSync(10)
        const password = req.body.password
        const user = new User({
+        sucess: true,
+        message: 'Пользователь создан',
          login: req.body.login,
          password: bcrypt.hashSync(password, salt),
          first_name: req.body.first_name,
          last_name: req.body.last_name,
-         role: req.body.role
+        //  role: req.body.role
        })
    
        try{
          await user.save()
-         res.status(201).json({
-           sucess: true,
-           message: 'user created'
-         },user)
+         res.status(201).json(user)
        } catch(e){
+         console.log('user'+user+'error'+e);
+         
          // Обработать ошибку
          errorHandler(res, e)
        }
+   
        
    
    

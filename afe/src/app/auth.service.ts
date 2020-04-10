@@ -7,6 +7,9 @@ import {map} from 'rxjs/operators'
 })
 export class AuthService {
 
+  token: any;
+  user: any;
+
   constructor(private http : Http) { }
 
   regUser(user){
@@ -21,4 +24,26 @@ export class AuthService {
     
   }
 
+  loginUser(user){
+    let headers = new Headers()
+    headers.append('Content-Type','application/json')
+    return this.http.post(
+      'http://localhost:5000/hd/auth/login', 
+      user,
+      {headers}
+    )
+    .pipe(map(res => res.json()))
+    
+  }
+
+  storeUser(token, user){
+    localStorage.setItem('token',token),
+    localStorage.setItem('user', JSON.stringify(user))
+  this.token = token;
+  this.user = user;
+  }
 }
+
+
+
+
