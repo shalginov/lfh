@@ -1,9 +1,11 @@
 export class Ticket {
     constructor (
     public num: number,
+    public name: string,    
+    public tel: string,        
     public title: string,
-    public message: string,
+    public mes: string,
     public perf: string = '',
-    public date: number = Date.now(),
+    public date: string,
     public completed: boolean =false) {}
   }

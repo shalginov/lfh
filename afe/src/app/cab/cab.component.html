@@ -20,8 +20,8 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Тема</th>
       <th scope="col">Дата</th>
+      <th scope="col">Тема</th>      
       <th scope="col">Исполнитель</th>
       <th scope="col">Исполнено</th>
     </tr>
@@ -29,8 +29,8 @@
   <tbody *ngFor="let ticket of tickets"  >
     <tr>
       <a href="#"><th scope="row">{{ ticket.num }}</th></a>
-      <td>{{ ticket.title }}</td>
       <td>{{ ticket.date }}</td>
+      <td>{{ ticket.title }}</td>      
       <td>{{ ticket.perf }}</td>
       <td>{{ ticket.completed ? "Да" : "Нет" }}</td>     
     </tr>

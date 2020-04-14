@@ -15,7 +15,7 @@ import {CheckFormService} from './check-form.service';
 import {FlashMessagesModule} from 'angular2-flash-messages';
 import {AuthService} from './auth.service'
 import {HttpModule} from '@angular/http';
-
+import { TicmobService } from './ticmob.service'
 
 
 
@@ -36,7 +36,7 @@ import {HttpModule} from '@angular/http';
     FlashMessagesModule.forRoot(),
     HttpModule
   ],
-  providers: [CheckFormService, AuthService],
+  providers: [CheckFormService, AuthService, TicmobService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {CheckFormService} from '../check-form.service'
-import {TicketService} from '../ticket.service'
+import {TicmobService} from '../ticmob.service'
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router'
-import {CabComponent} from '../cab/cab.component'
+// import {CabComponent} from '../cab/cab.component'
+import { tick } from '@angular/core/testing';
+import { Ticket } from '../shared/ticket';
+import { tickets } from '../shared/data';
+
 
 @Component({
   selector: 'app-ticket',
@@ -12,45 +16,58 @@ import {CabComponent} from '../cab/cab.component'
 })
 export class TicketComponent implements OnInit {
 
+tickets: Ticket[];
 
-  name: String;
-  tel: String;
-  mes: String;
-  perf:String;
+  name: string;
+  tel: string;
+  mes: string;
+  perf:string;
+  
+  
 
   constructor(
     private checkForm :CheckFormService,
     private flashMess: FlashMessagesService,
-    private ticketServ: TicketService,
+    private ticmobService: TicmobService,
     private router: Router,
-    private cabComp: CabComponent
-  ) { }
+    // private cabComp: CabComponent
+  ) { this.tickets = [] }
 
   ngOnInit(): void {
+    this.tickets = this.ticmobService.getTickets();
   }
 
   addTicket(){
-    const ticket = {
-      first_name: this.name,
-      tel: this.tel,
-      text: this.mes,
-      perf: this.perf
-    }
    
-   
-      if(!this.checkForm.checkInput(ticket.first_name)){
+      if(!this.checkForm.checkInput(this.name)){
         this.flashMess.show('Введите имя', {cssClass: 'alert-danger', timeout: 1500})      
         return false;      
       }
-      if(!this.checkForm.checkInput(ticket.tel)){
+      if(!this.checkForm.checkInput(this.tel)){
         this.flashMess.show('Введите телефон', {cssClass: 'alert-danger', timeout: 1500})      
         return false;      
       }
-      if(!this.checkForm.checkInput(ticket.text)){
+      if(!this.checkForm.checkInput(this.mes)){
         this.flashMess.show('Напишите сообщение', {cssClass: 'alert-danger', timeout: 1500})      
         return false;      
       }
-      
+
+      const ticket: Ticket = {
+        num: this.tickets.length + 1,
+        name: this.name,    
+        tel: this.tel,        
+        title: `${this.mes.substr(0,20)}...`,
+        mes: this.mes,
+        perf: this.perf ? this.perf : '',
+        date: '05.04.20',
+        completed: false 
+      }
+
+      console.log(this.tickets);
+
+            
+      this.ticmobService.createTicket(ticket);
+      this.router.navigate(['/cab'])
       // this.cabComp.pushTicket(1, 'some title', this.mes, this.perf );
       //     this.flashMess.show('Заявка создана', {cssClass: 'alert-success', timeout: 1500})      
       //     this.router.navigate(['/cab'])

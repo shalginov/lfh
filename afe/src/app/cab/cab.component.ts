@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TicmobService } from '../ticmob.service'
 
 import { Ticket } from '../shared/ticket'
 import { tickets } from '../shared/data'
@@ -21,9 +22,12 @@ export class CabComponent implements OnInit {
   // }
 
 
-  constructor() { }
+  constructor(private ticmobService: TicmobService) {
+    this.tickets = [];
+   }
 
   ngOnInit(): void {
+    this.tickets = this.ticmobService.getTickets();
   }
 
 }
