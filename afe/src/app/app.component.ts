@@ -11,6 +11,6 @@ import { tickets } from './shared/data'
 export class AppComponent {
   title = 'afe';
 
-  @Input() tickets : Ticket[] = tickets;
+  // @Input() tickets : Ticket[] = tickets;
 
 }

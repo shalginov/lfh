@@ -26,7 +26,7 @@
       <th scope="col">Исполнено</th>
     </tr>
   </thead>
-  <tbody *ngFor="let ticket of tickets" [ticket]="ticket">
+  <tbody *ngFor="let ticket of tickets"  >
     <tr>
       <a href="#"><th scope="row">{{ ticket.num }}</th></a>
       <td>{{ ticket.title }}</td>

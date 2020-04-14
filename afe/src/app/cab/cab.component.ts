@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 
 import { Ticket } from '../shared/ticket'
-
+import { tickets } from '../shared/data'
 
 
 @Component({
@@ -11,7 +11,9 @@ import { Ticket } from '../shared/ticket'
 })
 export class CabComponent implements OnInit {
 
-  @Input() ticket: Ticket; // from template
+  // @Input() ticket: Ticket; // from template
+   tickets : Ticket[] = tickets;
+
 
   // pushTicket(num, title, message, perf){
   //   const ticket = new Ticket (num, title, message, perf);
