@@ -51,9 +51,9 @@ export class TicketComponent implements OnInit {
         return false;      
       }
       
-      this.cabComp.pushTicket(1, 'some title', this.mes, this.perf );
-          this.flashMess.show('Заявка создана', {cssClass: 'alert-success', timeout: 1500})      
-          this.router.navigate(['/cab'])
+      // this.cabComp.pushTicket(1, 'some title', this.mes, this.perf );
+      //     this.flashMess.show('Заявка создана', {cssClass: 'alert-success', timeout: 1500})      
+      //     this.router.navigate(['/cab'])
         
       
        

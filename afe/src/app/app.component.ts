@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+
+import { Ticket } from './shared/ticket'
+import { tickets } from './shared/data'
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'afe';
+
+  @Input() tickets : Ticket[] = tickets;
+
 }
