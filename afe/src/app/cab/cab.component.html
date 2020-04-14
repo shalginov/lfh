@@ -1,3 +1,4 @@
+<app-header></app-header>
 <ul class="nav nav-pills">
   <li class="nav-item">
     <a class="nav-link active" [routerLink]="['/ticket']">Создать заявку</a>
@@ -16,35 +17,24 @@
   
 </ul>
 
-<table class="table">
+<table class="table" >
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>      
+      <th scope="col">Тема</th>
+      <th scope="col">Дата</th>
+      <th scope="col">Исполнитель</th>
+      <th scope="col">Исполнено</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody *ngFor="let ticket of tickets">
     <tr>
-      <a href="#"><th scope="row">1</th></a>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    
-  <tr>
-      <a href="#"><th scope="row">1</th></a>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
+      <a href="#"><th scope="row">{{ ticket.num }}</th></a>
+      <td>{{ ticket.title }}</td>
+      <td>{{ ticket.date }}</td>
+      <td>{{ ticket.perf }}</td>
+      <td>{{ ticket.completed ? "Да" : "Нет" }}</td>
       
-    </tr>
-    <tr>
-      <a href="#"><th scope="row">1</th></a>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
       
     </tr>
   </tbody>

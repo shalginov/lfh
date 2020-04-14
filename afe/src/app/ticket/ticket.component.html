@@ -1,29 +1,24 @@
+<app-header></app-header>
 <div class="jumbotron">
   <form (submit)="addTicket()">
 <div class="input-group mb-3" >
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Имя</span>
+      <span class="input-group-text" id="basic-addon1">Заявитель</span>
     </div>
     <input type="text" [(ngModel)]="name" name="name" class="form-control" placeholder="Имя заявителя" aria-label="Username" aria-describedby="basic-addon1">
   </div>
   <div class="input-group mb-3">
     <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Фам</span>
-    </div>
-    <input type="text" [(ngModel)]="fam" name="fam" class="form-control" placeholder="Фамилия заявителя" aria-label="Username" aria-describedby="basic-addon1">
-  </div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon1">Тел</span>
+      <span class="input-group-text" id="basic-addon1">Телефон</span>
     </div>
     <input type="text"  [(ngModel)]="tel" name="tel" class="form-control" placeholder="Телефон" aria-label="Username" aria-describedby="basic-addon1">
   </div>
   
   <div class="input-group">
     <div class="input-group-prepend">
-      <span class="input-group-text">Обращение </span>
+      <span class="input-group-text" >Обращение</span>
     </div>
-    <textarea class="form-control" [(ngModel)]="mes" name="mes" aria-label="Опишите проблему"></textarea>
+    <textarea class="form-control" [(ngModel)]="mes" name="mes" placeholder="Что у вас случилос?"></textarea>
   </div>
   <br>
 
@@ -31,11 +26,11 @@
     <div class="input-group-prepend">
       <label class="input-group-text" for="inputGroupSelect01">Исполнитель</label>
     </div>
-    <select class="custom-select" [(ngModel)]="perf" name="perf" id="inputGroupSelect01">
-      <option selected>Choose...</option>
-      <option value="one">One</option>
-      <option value="two">Two</option>
-      <option value="tree">Three</option>
+    <select pl class="custom-select" [(ngModel)]="perf" name="perf" id="inputGroupSelect01">
+      <option selected>Кто исполнит....</option>
+      <option value="one">Шалгинов</option>
+      <option value="two">Идимешев</option>
+      <option value="tree">Кунучаков</option>
     </select>
   </div>
 

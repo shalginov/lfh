@@ -17,7 +17,6 @@ export class AuthComponent implements OnInit {
   constructor(
     private checkForm: CheckFormService,
     private flashMess: FlashMessagesService,
-    private authServ: AuthService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -39,15 +38,14 @@ export class AuthComponent implements OnInit {
         return false;      
       }
 
-      this.authServ.loginUser(user).subscribe(data => {
-      if(!data.success){
-        this.flashMess.show(data.message, {cssClass: 'alert-danger', timeout: 1500})      
+
+      if( user.login != 'admin'   &&  user.password != '123456'){
+        this.flashMess.show('Неверный логин или пароль', {cssClass: 'alert-danger', timeout: 1500})      
         this.router.navigate(['/auth'])
-      } else if(data.success) {
-        this.flashMess.show(data.message, {cssClass: 'alert-success', timeout: 1500})      
-        this.router.navigate(['/cab'])
-        this.authServ.storeUser(data.token, data.user)
+      } else if(  user.login === 'admin' &&  user.password === '123456') {
+        this.flashMess.show('Добро пожаловать', {cssClass: 'alert-success', timeout: 1500})      
+        this.router.navigate(['/cab'])        
       }
-  })
+
   }
 }
