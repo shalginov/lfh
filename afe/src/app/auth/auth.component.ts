@@ -39,10 +39,10 @@ export class AuthComponent implements OnInit {
       }
 
 
-      if( user.login != 'admin'   &&  user.password != '123456'){
+      if( user.login != 'shalginov'   &&  user.password != '123456'){
         this.flashMess.show('Неверный логин или пароль', {cssClass: 'alert-danger', timeout: 1500})      
         this.router.navigate(['/auth'])
-      } else if(  user.login === 'admin' &&  user.password === '123456') {
+      } else if(  user.login === 'shalginov' &&  user.password === '123456') {
         this.flashMess.show('Добро пожаловать', {cssClass: 'alert-success', timeout: 1500})      
         this.router.navigate(['/cab'])        
       }
