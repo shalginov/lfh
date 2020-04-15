@@ -3,36 +3,53 @@ import {CheckFormService} from '../check-form.service'
 import {TicmobService} from '../ticmob.service'
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router'
+// import {CabComponent} from '../cab/cab.component'
+import { tick } from '@angular/core/testing';
 import { Ticket } from '../shared/ticket';
+import { tickets } from '../shared/data';
+
+
 
 @Component({
-  selector: 'app-ticket',
-  templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.css']
+  selector: 'app-edit-ticket',
+  templateUrl: './edit-ticket.component.html',
+  styleUrls: ['./edit-ticket.component.css']
 })
-export class TicketComponent implements OnInit {
+export class EditTicketComponent implements OnInit {
 
-tickets: Ticket[];
+  tickets: Ticket[];
+  current: Ticket;
 
-  name: string;
-  tel: string;
-  mes: string;
-  perf:string;
-  
-  
+  ngOnInit(): void {
+    this.tickets = this.ticmobService.getTickets(); 
+    }
+
+  name: string ;
+  tel: string ;
+  mes: string ;
+  perf:string ;
+  completed: boolean ;
 
   constructor(
     private checkForm :CheckFormService,
     private flashMess: FlashMessagesService,
     private ticmobService: TicmobService,
     private router: Router,
-  ) { this.tickets = [] }
-
-  ngOnInit(): void {
-    this.tickets = this.ticmobService.getTickets();
+    // private cabComp: CabComponent
+  ) { 
+    this.tickets = [];
+    this.current = this.ticmobService.getTicket();
+    this.name = this.current.name ;
+    this.tel = this.current.tel;
+    this.mes = this.current.mes;
+    this.perf = this.current.perf; 
+    this.completed = this.current.completed;
+      
   }
 
-  addTicket(){
+ 
+
+  editTicket(){
    
       if(!this.checkForm.checkInput(this.name)){
         this.flashMess.show('Введите имя', {cssClass: 'alert-danger', timeout: 1500})      
@@ -48,21 +65,29 @@ tickets: Ticket[];
       }
 
       const ticket: Ticket = {
-        num: this.tickets.length + 1,
+        num: this.current.num,
         name: this.name,    
         tel: this.tel,        
-        title: `${this.mes.substr(0,20)}...`,
+        title: this.current.title,
         mes: this.mes,
-        perf: this.perf ? this.perf : '',
+        perf: this.perf ,
         date: '05.04.20',
-        completed: false 
+        completed: this.completed         
       }
 
       console.log(this.tickets);
 
             
-      this.ticmobService.createTicket(ticket);
+      this.ticmobService.patchTicket(ticket);
       this.router.navigate(['/cab'])
+      // this.cabComp.pushTicket(1, 'some title', this.mes, this.perf );
+      //     this.flashMess.show('Заявка создана', {cssClass: 'alert-success', timeout: 1500})      
+      //     this.router.navigate(['/cab'])
+        
+      
+       
+     
+
 
   }
 

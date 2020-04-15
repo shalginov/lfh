@@ -15,7 +15,8 @@ import {CheckFormService} from './check-form.service';
 import {FlashMessagesModule} from 'angular2-flash-messages';
 import {AuthService} from './auth.service'
 import {HttpModule} from '@angular/http';
-import { TicmobService } from './ticmob.service'
+import { TicmobService } from './ticmob.service';
+import { EditTicketComponent } from './edit-ticket/edit-ticket.component'
 
 
 
@@ -27,7 +28,8 @@ import { TicmobService } from './ticmob.service'
     AuthComponent,
     RegComponent,
     CabComponent,
-    TicketComponent   
+    TicketComponent,
+    EditTicketComponent   
   ],
   imports: [
     BrowserModule,

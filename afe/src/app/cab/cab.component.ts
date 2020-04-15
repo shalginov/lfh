@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { TicmobService } from '../ticmob.service'
 
 import { Ticket } from '../shared/ticket'
 import { tickets } from '../shared/data'
+
 
 
 @Component({
@@ -12,15 +13,9 @@ import { tickets } from '../shared/data'
 })
 export class CabComponent implements OnInit {
 
-  // @Input() ticket: Ticket; // from template
-   tickets : Ticket[] = tickets;
-
-
-  // pushTicket(num, title, message, perf){
-  //   const ticket = new Ticket (num, title, message, perf);
-  //   tickets.push(ticket);
-  // }
-
+  
+   tickets: Ticket[] = tickets;
+  
 
   constructor(private ticmobService: TicmobService) {
     this.tickets = [];
@@ -28,6 +23,10 @@ export class CabComponent implements OnInit {
 
   ngOnInit(): void {
     this.tickets = this.ticmobService.getTickets();
+  }
+
+  setNum(num){
+    this.ticmobService.setIndex(num);
   }
 
 }
