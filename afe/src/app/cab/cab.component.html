@@ -22,6 +22,9 @@
       <th scope="col">#</th>
       <th scope="col">Дата</th>
       <th scope="col">Тема</th>      
+      <th scope="col">Имя</th>      
+      <th scope="col">Фамилия</th>      
+      <th scope="col">Телефон</th>      
       <th scope="col">Исполнитель</th>
       <th scope="col">Исполнено</th>
     </tr>
@@ -31,6 +34,9 @@
       <a [routerLink]="['/edit']" routerLinkActive="router-link-active" (click)="setNum(ticket.num)"><th scope="row">{{ ticket.num }}</th></a>
       <td>{{ ticket.date }}</td>
       <td>{{ ticket.title }}</td>      
+      <td>{{ ticket.first_name }}</td>      
+      <td>{{ ticket.last_name }}</td>      
+      <td>{{ ticket.tel }}</td>      
       <td>{{ ticket.perf }}</td>
       <td>{{ ticket.completed ? "Да" : "Нет" }}</td>     
     </tr>

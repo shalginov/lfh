@@ -6,7 +6,7 @@ import {Router} from '@angular/router'
 // import {CabComponent} from '../cab/cab.component'
 import { tick } from '@angular/core/testing';
 import { Ticket } from '../shared/ticket';
-import { tickets } from '../shared/data';
+import { TicketService } from '../ticket.service';
 
 
 
@@ -21,7 +21,7 @@ export class EditTicketComponent implements OnInit {
   current: Ticket;
 
   ngOnInit(): void {
-    this.tickets = this.ticmobService.getTickets(); 
+     this.ticketService.getTickets().subscribe(data => this.tickets = data); 
     }
 
   name: string ;
@@ -33,17 +33,17 @@ export class EditTicketComponent implements OnInit {
   constructor(
     private checkForm :CheckFormService,
     private flashMess: FlashMessagesService,
-    private ticmobService: TicmobService,
+    private ticketService: TicketService,
     private router: Router,
     // private cabComp: CabComponent
   ) { 
-    this.tickets = [];
-    this.current = this.ticmobService.getTicket();
-    this.name = this.current.name ;
-    this.tel = this.current.tel;
-    this.mes = this.current.mes;
-    this.perf = this.current.perf; 
-    this.completed = this.current.completed;
+    // this.tickets = [];
+    // this.current = this.ticmobService.getTicket();
+    // this.name = this.current.name ;
+    // this.tel = this.current.tel;
+    // this.mes = this.current.mes;
+    // this.perf = this.current.perf; 
+    // this.completed = this.current.completed;
       
   }
 

@@ -1,8 +1,7 @@
 import { Component, OnInit} from '@angular/core';
-import { TicmobService } from '../ticmob.service'
-
+import { TicketService } from '../ticket.service'
 import { Ticket } from '../shared/ticket'
-import { tickets } from '../shared/data'
+
 
 
 
@@ -14,19 +13,19 @@ import { tickets } from '../shared/data'
 export class CabComponent implements OnInit {
 
   
-   tickets: Ticket[] = tickets;
+   tickets: Ticket[] ;
   
 
-  constructor(private ticmobService: TicmobService) {
+  constructor(private ticketService: TicketService) {
     this.tickets = [];
    }
 
   ngOnInit(): void {
-    this.tickets = this.ticmobService.getTickets();
+    this.ticketService.getTickets().subscribe(data => this.tickets = data);
   }
 
   setNum(num){
-    this.ticmobService.setIndex(num);
+    //this.ticmobService.setIndex(num);
   }
 
 }

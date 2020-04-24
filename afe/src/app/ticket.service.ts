@@ -21,4 +21,15 @@ export class TicketService {
     
   }
 
+  getTickets() {
+    let headers = new Headers()
+    headers.append('Content-Type','application/json')
+    return this.http.get(
+      'http://localhost:5000/hd/ticket/all',     
+      {headers}
+    )
+    .pipe(map(res => res.json()))
+    
+  }
+
 }

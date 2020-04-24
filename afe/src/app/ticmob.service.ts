@@ -11,27 +11,25 @@ export class TicmobService {
 
   constructor() { }
 
-  tickets: Ticket[] = tickets;
+//  tickets: Ticket[] = tickets;
   index: number;
   
-  getTickets(): Ticket[] {
-    return this.tickets;
+  getTickets(){//: Ticket[] {
+  //  return this.tickets;
   }
 
   createTicket(ticket: Ticket){
-    this.tickets.push(ticket)
+  //  this.tickets.push(ticket)
   }
 
   patchTicket(ticket: Ticket){    
-    const i = ticket.num - 1;
-    this.tickets[i].name = ticket.name;    
-    this.tickets[i].perf = ticket.perf;    
-    this.tickets[i].tel = ticket.tel;    
-    this.tickets[i].mes = ticket.mes;    
-    this.tickets[i].completed = ticket.completed;    
-    
-    
-    
+    // const i = ticket.num - 1;
+    // this.tickets[i].name = ticket.name;    
+    // this.tickets[i].perf = ticket.perf;    
+    // this.tickets[i].tel = ticket.tel;    
+    // this.tickets[i].mes = ticket.mes;    
+    // this.tickets[i].completed = ticket.completed;    
+     
   }
 
   setIndex(index: number){
@@ -39,7 +37,7 @@ export class TicmobService {
   }
 
   getTicket(): Ticket {
-    return this.tickets[this.index]
+  //  return this.tickets[this.index]
   }
 
 
