@@ -7,12 +7,11 @@ module.exports.add = async function (req, res){
             
         const ticket = await new Ticket ({
            num: maxNum ? maxNum.num +1 : 0,
-           first_name: req.body.first_name,
-           last_name: req.body.last_name,
+           name: req.body.name,
            tel: req.body.tel,
            text: req.body.text,
            perf: req.body.perf,
-           status: 'open'           
+           status: req.body.status           
         }).save()        
         res.status(201).json(ticket)        
     } catch (error) {
@@ -48,13 +47,13 @@ module.exports.getAll = async function (req, res){
         // }
     
         try {        
-            const orders = await Ticket
+            const tickets = await Ticket
             .find()
             .sort({date: -1})
             // .skip(+req.query.offset)
             // .limit(+req.query.limit)
     
-            res.status(200).json(orders)
+            res.status(200).json(tickets)
     } catch (error) {
         errorHandler(error)
     }

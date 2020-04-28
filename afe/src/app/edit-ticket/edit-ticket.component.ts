@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {CheckFormService} from '../check-form.service'
-import {TicmobService} from '../ticmob.service'
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router'
 // import {CabComponent} from '../cab/cab.component'
-import { tick } from '@angular/core/testing';
 import { Ticket } from '../shared/ticket';
 import { TicketService } from '../ticket.service';
+import { TicmobService } from '../ticmob.service';
+import { map } from 'rxjs/operators';
 
 
 
@@ -19,31 +19,65 @@ export class EditTicketComponent implements OnInit {
 
   tickets: Ticket[];
   current: Ticket;
+  index: number;
+  temp: any;
 
-  ngOnInit(): void {
-     this.ticketService.getTickets().subscribe(data => this.tickets = data); 
-    }
-
+  num: number;
+  date: string;  
   name: string ;
   tel: string ;
   mes: string ;
   perf:string ;
-  completed: boolean ;
+  completed: string ;
+  
+  ngOnInit(): void {
+    console.log('ngOnInit works');
+    
+
+    this.index = this.ticmobService.index;
+    console.log('index- ' + this.index);
+         
+    this.ticketService.getTickets().subscribe(data => {
+      console.log('data - ' + data);
+     
+      this.tickets = data;     
+     console.log('tickets - '+ this.tickets);
+     
+      this.current = this.tickets[this.index];
+      this.temp = JSON.parse(JSON.stringify(this.current));
+      console.log('temp - '+typeof(this.temp));
+      console.log(this.temp);
+      
+      
+      console.log('Current - i' + JSON.stringify( this.current));  
+      
+      this.name = this.temp.name
+      this.tel = this.current.tel;
+      this.mes = this.current.text;
+      this.perf = this.current.perf; 
+      this.completed = this.current.status;     
+      console.log('tickets - ' + this.tickets);   
+      
+    });
+    }
+
+  
 
   constructor(
     private checkForm :CheckFormService,
     private flashMess: FlashMessagesService,
     private ticketService: TicketService,
     private router: Router,
-    // private cabComp: CabComponent
+    private ticmobService: TicmobService,
   ) { 
+    console.log('constructor works');
+   
+      
+    
+    
     // this.tickets = [];
     // this.current = this.ticmobService.getTicket();
-    // this.name = this.current.name ;
-    // this.tel = this.current.tel;
-    // this.mes = this.current.mes;
-    // this.perf = this.current.perf; 
-    // this.completed = this.current.completed;
+    
       
   }
 
@@ -64,31 +98,26 @@ export class EditTicketComponent implements OnInit {
         return false;      
       }
 
-      const ticket: Ticket = {
-        num: this.current.num,
-        name: this.name,    
-        tel: this.tel,        
-        title: this.current.title,
-        mes: this.mes,
-        perf: this.perf ,
-        date: '05.04.20',
-        completed: this.completed         
-      }
+      // const ticket: Ticket = {
+      //   num: this.current.num,
+      //   name: this.name,    
+      //   tel: this.tel,        
+      //   title: this.current.title,
+      //   mes: this.mes,
+      //   perf: this.perf ,
+      //   date: '05.04.20',
+      //   completed: this.completed         
+      // }
 
-      console.log(this.tickets);
+      // console.log(this.tickets);
 
             
-      this.ticmobService.patchTicket(ticket);
-      this.router.navigate(['/cab'])
+      // this.ticmobService.patchTicket(ticket);
+      // this.router.navigate(['/cab'])
       // this.cabComp.pushTicket(1, 'some title', this.mes, this.perf );
       //     this.flashMess.show('Заявка создана', {cssClass: 'alert-success', timeout: 1500})      
       //     this.router.navigate(['/cab'])
-        
       
-       
-     
-
-
   }
 
 }

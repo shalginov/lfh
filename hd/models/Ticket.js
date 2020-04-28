@@ -11,29 +11,26 @@ const ticketSchema = new Schema ({
         type: Date,
         default: Date.now
     },
-    first_name: {
+    name: {
       type: String,
       require:true,
-    },
-    last_name: {
-      type: String      
-    },
+    },    
     tel: {
       type:String
     },
-    header: {
+    title: {
       type: String
-    },  
-    status: {
-      type: String
-    },
+    },     
     text:{
         type: String,
         require:true
     },
     perf: {
        type: String
-    }
+    },
+     status: {
+      type: String
+    },
 
 }) 
 

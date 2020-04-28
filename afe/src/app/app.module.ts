@@ -17,6 +17,7 @@ import {AuthService} from './auth.service'
 import {HttpModule} from '@angular/http';
 import { TicmobService } from './ticmob.service';
 import { EditTicketComponent } from './edit-ticket/edit-ticket.component'
+import { TicketService } from './ticket.service';
 
 
 
@@ -38,7 +39,7 @@ import { EditTicketComponent } from './edit-ticket/edit-ticket.component'
     FlashMessagesModule.forRoot(),
     HttpModule
   ],
-  providers: [CheckFormService, AuthService, TicmobService],
+  providers: [CheckFormService, AuthService, TicmobService, TicketService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

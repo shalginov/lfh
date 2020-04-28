@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import {CheckFormService} from '../check-form.service'
 import {TicmobService} from '../ticmob.service'
 import {FlashMessagesService} from 'angular2-flash-messages';
 import {Router} from '@angular/router'
 import { Ticket } from '../shared/ticket';
+import {TicketService} from '../ticket.service'
+
 
 @Component({
   selector: 'app-ticket',
@@ -26,10 +28,12 @@ tickets: Ticket[];
     private flashMess: FlashMessagesService,
     private ticmobService: TicmobService,
     private router: Router,
-  ) { this.tickets = [] }
+    private ticketService: TicketService,
+
+  ) {  }
 
   ngOnInit(): void {
-    this.tickets = this.ticmobService.getTickets();
+   this.ticketService.getTickets().subscribe(data => this.tickets = data);   
   }
 
   addTicket(){
@@ -52,16 +56,14 @@ tickets: Ticket[];
         name: this.name,    
         tel: this.tel,        
         title: `${this.mes.substr(0,20)}...`,
-        mes: this.mes,
+        text: this.mes,
         perf: this.perf ? this.perf : '',
-        date: '05.04.20',
-        completed: false 
+        date: '',
+        status: 'new', 
       }
-
-      console.log(this.tickets);
-
+   
             
-      this.ticmobService.createTicket(ticket);
+      this.ticketService.addTicket(ticket).subscribe();
       this.router.navigate(['/cab'])
 
   }

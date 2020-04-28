@@ -12,7 +12,7 @@ export class TicmobService {
   constructor() { }
 
 //  tickets: Ticket[] = tickets;
-  index: number;
+  public index: number;
   
   getTickets(){//: Ticket[] {
   //  return this.tickets;
@@ -33,12 +33,12 @@ export class TicmobService {
   }
 
   setIndex(index: number){
-    this.index = index - 1;
+    this.index = index - 1;    
   }
 
-  getTicket(): Ticket {
+  // getTicket(): Ticket {
   //  return this.tickets[this.index]
-  }
+  // }
 
 
 }

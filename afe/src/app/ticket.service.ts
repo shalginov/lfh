@@ -9,12 +9,12 @@ export class TicketService {
 
   constructor(private http : Http) { }
 
-  addTicket(user){
+  addTicket(ticket){
     let headers = new Headers()
     headers.append('Content-Type','application/json')
     return this.http.post(
       'http://localhost:5000/hd/ticket/add', 
-      user,
+      ticket,
       {headers}
     )
     .pipe(map(res => res.json()))
