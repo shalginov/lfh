@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers} from '@angular/http';
 import {map} from 'rxjs/operators'
+import { Observable } from 'rxjs';
+import { Ticket } from './shared/ticket';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +21,7 @@ export class TicketService {
     )
     .pipe(map(res => res.json()))
     
-  }
+  } 
 
   getTickets() {
     let headers = new Headers()
@@ -30,6 +32,17 @@ export class TicketService {
     )
     .pipe(map(res => res.json()))
     
+  }
+
+  update(num: number) {
+    // let headers = new Headers()
+    // headers.append('Content-Type','application/json')
+    const fd = new FormData
+    return this.http.patch(     
+      'http://localhost:5000/hd/ticket/upd', fd,
+      // num,
+      // {headers}
+      )
   }
 
 }

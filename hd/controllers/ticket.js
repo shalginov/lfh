@@ -58,3 +58,24 @@ module.exports.getAll = async function (req, res){
         errorHandler(error)
     }
 }
+
+
+module.exports.update = async function(req, res) {
+    const updated = {
+        name: 'slava'
+        // name: req.body.name
+    }
+    // if(req.file){
+    //     updated.imageSrc = req.file.path
+    // }
+    try {
+        const ticket = await Ticket.findOneAndUpdate(
+            {num: req.params.num},
+            {$set: updated},
+            // {new: true}
+        )
+        res.status(200).json(ticket)        
+    } catch (e) {
+        errorHandler(res, e)        
+    }
+}

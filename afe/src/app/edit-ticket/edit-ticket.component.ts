@@ -101,16 +101,19 @@ export class EditTicketComponent implements OnInit {
         return false;      
       }
 
-      // const ticket: Ticket = {
-      //   num: this.current.num,
-      //   name: this.name,    
-      //   tel: this.tel,        
-      //   title: this.current.title,
-      //   mes: this.mes,
-      //   perf: this.perf ,
-      //   date: '05.04.20',
-      //   completed: this.completed         
-      // }
+      
+      const ticket: Ticket = {        
+        num: this.current.num,
+        name: this.name,    
+        tel: this.tel,        
+        title: this.current.title,
+        text: this.mes,
+        perf: this.perf ,
+        date: this.current.date,
+        status: this.completed         
+      }
+
+      this.ticketService.update(this.index).subscribe()
 
       // console.log(this.tickets);
 
