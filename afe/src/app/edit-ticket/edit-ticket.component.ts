@@ -43,7 +43,10 @@ export class EditTicketComponent implements OnInit {
       this.tickets = data;     
      console.log('tickets - '+ this.tickets);
      
-      this.current = this.tickets[this.index];
+     this.index = this.tickets.length - this.index - 2
+     console.log('index 2- ' + this.index);
+
+      this.current = JSON.parse(JSON.stringify((this.tickets[this.index])));
       this.temp = JSON.parse(JSON.stringify(this.current));
       console.log('temp - '+typeof(this.temp));
       console.log(this.temp);
