@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers} from '@angular/http';
+import { HttpClient } from '@angular/common/http'
 import {map} from 'rxjs/operators'
 import { Observable } from 'rxjs';
 import { Ticket } from './shared/ticket';
@@ -9,7 +10,10 @@ import { Ticket } from './shared/ticket';
 })
 export class TicketService {
 
-  constructor(private http : Http) { }
+  constructor(
+    private http : Http,
+    private httpClient: HttpClient,
+    ) { }
 
   addTicket(ticket){
     let headers = new Headers()
@@ -34,11 +38,14 @@ export class TicketService {
     
   }
 
-  update(num: number) {
+  update(num: number): Observable<Ticket> {
+    console.log('NUMBER IN TICKET SERVICE - '+num);
+    
     // let headers = new Headers()
     // headers.append('Content-Type','application/json')
     const fd = new FormData
-    return this.http.patch(     
+    fd.append ('num', '42')
+    return this.httpClient.patch<Ticket>(     
       'http://localhost:5000/hd/ticket/upd', fd,
       // num,
       // {headers}

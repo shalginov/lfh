@@ -113,7 +113,18 @@ export class EditTicketComponent implements OnInit {
         status: this.completed         
       }
 
-      this.ticketService.update(this.index).subscribe()
+      let obs$
+      
+      const num = 36
+
+      console.log('INDEX IN EDITTICKET - '+ this.index);
+      
+      // this.ticketService.update(this.index).subscribe()
+
+      obs$ = this.ticketService.update(num)
+      obs$.subscribe(
+        res => console.log('RESPONSE - ' + res)        
+      )
 
       // console.log(this.tickets);
 
