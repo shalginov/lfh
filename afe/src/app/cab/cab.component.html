@@ -31,7 +31,7 @@
   </thead>
   <tbody *ngFor="let ticket of tickets">
     <tr>
-      <a [routerLink]="['/edit']" routerLinkActive="router-link-active" (click)="setNum(ticket.num)"><th scope="row">{{ ticket.num }}</th></a>
+      <a [routerLink]="['/edit', ticket._id]" routerLinkActive="router-link-active" (click)="setNum(ticket.num)"><th scope="row">{{ ticket.num }}</th></a>
       <td>{{ ticket.title }}</td>      
       <td>{{ ticket.name }}</td>      
       <td>{{ ticket.tel }}</td>      

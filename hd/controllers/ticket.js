@@ -68,11 +68,13 @@ module.exports.update = async function(req, res) {
     // if(req.file){
     //     updated.imageSrc = req.file.path
     // }
-    console.log('NUMBER - ' +req.body.num);
+    console.log('NUMBER - ' + req.body.num);
+    console.log('PARAMS ID - ' + req.params.id);
+    
     
     try {
         const ticket = await Ticket.findOneAndUpdate(
-            {num: req.body.num},
+            {_id: req.params.id},
             {$set: updated},
             {new: true}
         )

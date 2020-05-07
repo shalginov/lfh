@@ -13,7 +13,8 @@ const routes: Routes = [
   {path: 'cab', component: CabComponent},
   {path: 'reg', component: RegComponent},
   {path: 'ticket', component: TicketComponent},
-  {path: 'edit', component: EditTicketComponent} 
+  {path: 'edit/:id', component: EditTicketComponent}, 
+  // {path: 'upd/:id', component: EditTicketComponent}, 
  
 ];
 

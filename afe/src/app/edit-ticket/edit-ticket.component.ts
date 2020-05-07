@@ -18,7 +18,7 @@ import { map } from 'rxjs/operators';
 export class EditTicketComponent implements OnInit {
 
   tickets: Ticket[];
-  current: Ticket;
+  current: any;
   index: number;
   temp: any;
 
@@ -49,7 +49,9 @@ export class EditTicketComponent implements OnInit {
       this.current = JSON.parse(JSON.stringify((this.tickets[this.index])));
       this.temp = JSON.parse(JSON.stringify(this.current));
       console.log('temp - '+typeof(this.temp));
-      console.log(this.temp);
+      console.log( 'TEMP - '+this.temp);
+      console.log('_ID - ' + this.current._id);
+      
       
       
       console.log('Current - i' + JSON.stringify( this.current));  
@@ -121,7 +123,7 @@ export class EditTicketComponent implements OnInit {
       
       // this.ticketService.update(this.index).subscribe()
 
-      obs$ = this.ticketService.update(num)
+      obs$ = this.ticketService.update(this.current._id,num)
       obs$.subscribe(
         res => console.log('RESPONSE - ' + res)        
       )
