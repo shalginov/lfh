@@ -30,9 +30,7 @@ export class CabComponent implements OnInit {
       this.tickets = data;
       
     }
-      );
-    
-    
+      );   
   }
 
   refreshTicketsOnCab() {

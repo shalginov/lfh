@@ -21,7 +21,6 @@ tickets: Ticket[];
   mes: string;
   perf:string;
   
-  
 
   constructor(
     private checkForm :CheckFormService,

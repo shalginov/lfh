@@ -115,18 +115,19 @@ export class EditTicketComponent implements OnInit {
         status: this.completed         
       }
 
-      let obs$
-      
-      const num = 36
+       this.ticketService.update(this.current._id,ticket).subscribe()
 
-      console.log('INDEX IN EDITTICKET - '+ this.index);
+      // let obs$
       
-      // this.ticketService.update(this.index).subscribe()
+      // const num = 36
 
-      obs$ = this.ticketService.update(this.current._id,num)
-      obs$.subscribe(
-        res => console.log('RESPONSE - ' + res)        
-      )
+      // console.log('INDEX IN EDITTICKET - '+ this.index);
+      
+     
+      // obs$ = this.ticketService.update(this.current._id,num)
+      // obs$.subscribe(
+      //   res => console.log('RESPONSE - ' + res)        
+      // )
 
       // console.log(this.tickets);
 

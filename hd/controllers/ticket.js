@@ -62,13 +62,12 @@ module.exports.getAll = async function (req, res){
 
 module.exports.update = async function(req, res) {
     const updated = {
-        name: 'valasa'
-        // name: req.body.name
+        name: req.body.name
     }
     // if(req.file){
     //     updated.imageSrc = req.file.path
     // }
-    console.log('NUMBER - ' + req.body.num);
+    console.log('NUMBER - ' + req.body.name);
     console.log('PARAMS ID - ' + req.params.id);
     
     

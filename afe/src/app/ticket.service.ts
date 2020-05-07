@@ -38,20 +38,20 @@ export class TicketService {
     
   }
 
-  update(id: string, num: number): Observable<Ticket> {
-    console.log('NUMBER IN TICKET SERVICE - '+num);
+  update(id: string, ticket: Ticket ): Observable<Ticket> {
     
-    // let headers = new Headers()
-    // headers.append('Content-Type','application/json')
-    const fd = new FormData
-    fd.append ('num', '42')
-    console.log('FORMDATA IN TICKET SERVICE - ' + JSON.stringify(fd));
+    let headers = new Headers()
+    headers.append('Content-Type','application/json')
+    // const fd = new FormData
+    // fd.append ('name', name)
     
-    return this.httpClient.patch<Ticket>(     
-      `http://localhost:5000/hd/ticket/upd/${id}`, fd,
-      // num,
-      // {headers}
+    return this.http.patch(     
+      `http://localhost:5000/hd/ticket/upd/${id}`, 
+      // fd,
+      ticket,
+       {headers}
       )
+      .pipe(map(res => res.json()))
   }
 
 }

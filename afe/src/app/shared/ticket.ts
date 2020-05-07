@@ -1,11 +1,10 @@
-export class Ticket {
-    constructor (
-    public num: number,
-    public date: string,
-    public name: string,    
-    public tel: string,        
-    public title: string,
-    public text: string,
-    public perf: string,    
-    public status: string) {}
-  }
+export interface Ticket {
+     num: number,
+     date: string,
+     name: string,    
+     tel: string,        
+     title: string,
+     text: string,
+     perf: string,    
+     status: string
+}
