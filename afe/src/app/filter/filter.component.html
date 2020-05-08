@@ -1,0 +1,33 @@
+<br>
+<div class="filter">
+<div class="container">
+    
+      <div class="row justify-content-end">
+
+        <div class="col-2">
+            <input type="number" id="number" min="1" [(ngModel)]="ticket">
+            <label for="number">Номер</label>          
+        </div>
+
+          <div class="col-2">
+            <input type="text" #start>
+            <label>Начало</label>
+          </div>
+    
+          <div class="col-2">
+            <input type="text" #end>
+            <label>Конец</label>
+          </div>
+        
+    <div class="col">
+        <button
+        class="btn btn-primary"
+        (click)="submitFilter()"
+        [disabled]="!isValid"
+      >Применить фильтр</button>
+    </div>
+
+    </div>  
+</div>
+</div>
+<br>

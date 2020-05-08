@@ -28,7 +28,7 @@ export class CabComponent implements OnInit {
   ngOnInit(): void {
     this.ticketService.getTickets().subscribe(data => {
       this.tickets = data;
-      
+            
     }
       );   
   }

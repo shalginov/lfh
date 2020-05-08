@@ -115,7 +115,9 @@ export class EditTicketComponent implements OnInit {
         status: this.completed         
       }
 
-       this.ticketService.update(this.current._id,ticket).subscribe()
+       this.ticketService.update(this.current._id,ticket).subscribe(
+         () => this.router.navigate(['/cab'])      
+       )
 
       // let obs$
       
@@ -133,7 +135,6 @@ export class EditTicketComponent implements OnInit {
 
             
       // this.ticmobService.patchTicket(ticket);
-      // this.router.navigate(['/cab'])
       // this.cabComp.pushTicket(1, 'some title', this.mes, this.perf );
       //     this.flashMess.show('Заявка создана', {cssClass: 'alert-success', timeout: 1500})      
       //     this.router.navigate(['/cab'])

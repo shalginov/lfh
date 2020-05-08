@@ -21,6 +21,7 @@ import {HttpModule} from '@angular/http';
 import { TicmobService } from './ticmob.service';
 import { EditTicketComponent } from './edit-ticket/edit-ticket.component'
 import { TicketService } from './ticket.service';
+import { FilterComponent } from './filter/filter.component';
 
 
 
@@ -33,7 +34,8 @@ import { TicketService } from './ticket.service';
     RegComponent,
     CabComponent,
     TicketComponent,
-    EditTicketComponent   
+    EditTicketComponent,
+    FilterComponent   
   ],
   imports: [
     BrowserModule,
