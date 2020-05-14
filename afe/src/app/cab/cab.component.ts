@@ -1,7 +1,10 @@
 import { Component, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs'
 import { TicketService } from '../ticket.service'
 import { Ticket } from '../shared/ticket'
 import { TicmobService } from '../ticmob.service'
+import { Filter } from '../shared/interfaces';
+import { tick } from '@angular/core/testing';
 
 
 
@@ -16,7 +19,9 @@ export class CabComponent implements OnInit {
 
   
    tickets: Ticket[] ;
-  
+   filter: Filter = {} 
+   oSub: Subscription
+
 
   constructor(
     private ticketService: TicketService,
@@ -27,10 +32,16 @@ export class CabComponent implements OnInit {
 
   ngOnInit(): void {
     this.ticketService.getTickets().subscribe(data => {
-      this.tickets = data;
-            
-    }
+      this.tickets = data;           
+       }
       );   
+  }
+
+  private fetch() {
+    const params =  this.filter
+    this.oSub = this.ticketService.fetch(params).subscribe(tickets => {
+      this.tickets = tickets      
+    })
   }
 
   refreshTicketsOnCab() {
@@ -39,6 +50,19 @@ export class CabComponent implements OnInit {
 
   setNum(num){
     this.ticmobService.setIndex(num);
+  }
+
+  applyFilter(filter: Filter){
+    this.tickets = []
+    this.filter = filter
+    this.fetch()
+  }
+
+  clearFilter(){
+    this.ticketService.getTickets().subscribe(data => {
+      this.tickets = data;            
+      }    
+    );
   }
 
 }

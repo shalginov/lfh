@@ -23,32 +23,32 @@ module.exports.add = async function (req, res){
 
 module.exports.getAll = async function (req, res){
    
-        // const query = {
-        //     user: req.user.id
-        // }
+        const query = {
+            // user: req.user.id
+        }
         
-        // //дата старта
-        // if(req.query.start) {
-        //     query.date = {
-        //         //gratet or equel
-        //         $gte: req.query.start
-        //     }
-        // }
+        //дата старта
+        if(req.query.start) {
+            query.date = {
+                //gratet or equel
+                $gte: req.query.start
+            }
+        }
     
-        // if(req.query.end){
-        //     if(!query.date){
-        //         query.date = {}
-        //     }
-        //     query.date['$lte'] = req.query.end
-        // }
+        if(req.query.end){
+            if(!query.date){
+                query.date = {}
+            }
+            query.date['$lte'] = req.query.end
+        }
     
-        // if(req.query.order) {
-        //     query.order = +req.query.order
-        // }
+        if(req.query.ticket) {
+            query.num = +req.query.ticket
+        }
     
         try {        
             const tickets = await Ticket
-            .find()
+            .find(query)
             .sort({date: -1})
             // .skip(+req.query.offset)
             // .limit(+req.query.limit)

@@ -1,7 +1,13 @@
 <app-header></app-header>
-<ul class="nav nav-pills">
-  <li class="nav-item">
-    <a class="nav-link active" [routerLink]="['/ticket']">Создать заявку</a>
+<ul class="
+<!-- nav nav-pills -->
+">
+  <li class="
+  <!-- nav-item -->
+  ">
+    <a class="
+    <!-- nav-link active -->
+     btn waves-effect wavers-light btn-small" [routerLink]="['/ticket']">Создать заявку</a>
   </li>
 </ul>
 <ul class="nav nav-tabs">
@@ -15,7 +21,10 @@
     <a class="nav-link" href="#">Настройки</a>
   </li>
 </ul>
-<app-filter></app-filter>
+<app-filter
+  (onFilter)="applyFilter($event)"
+  (onClearFilter)="clearFilter()"
+></app-filter>
 <table class="table" >
   <thead>
     <tr>

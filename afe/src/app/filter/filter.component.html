@@ -1,33 +1,41 @@
 <br>
-<div class="filter">
-<div class="container">
-    
-      <div class="row justify-content-end">
-
-        <div class="col-2">
-            <input type="number" id="number" min="1" [(ngModel)]="ticket">
-            <label for="number">Номер</label>          
-        </div>
-
-          <div class="col-2">
-            <input type="text" #start>
-            <label>Начало</label>
+<div class="filter js-filter-block">
+  <div class="fr">
+      <div class="col order">
+          <div class="input-field inline order-position-input">
+              <input type="number" id="number" min="1" [(ngModel)]="ticket" #filterTicketNumber>
+              <label for="number">Номер заявки</label>
           </div>
-    
-          <div class="col-2">
-            <input type="text" #end>
-            <label>Конец</label>
+      </div>
+      <div class="col filter-pickers">
+          <div class="input-field">
+              <input type="text" #start>
+              <label>Начало</label>
           </div>
-        
-    <div class="col">
-        <button
-        class="btn btn-primary"
-        (click)="submitFilter()"
-        [disabled]="!isValid"
+
+          <div class="input-field">
+              <input type="text" #end>
+              <label>Конец</label>
+          </div>
+      </div>
+      
+     
+
+  </div>
+   
+  <button class="btn waves-effect wavers-light btn-small"
+      (click)="submitFilter()"
+      [disabled]="!isValid"
       >Применить фильтр</button>
-    </div>
 
-    </div>  
-</div>
+      <button class="btn waves-effect wavers-light btn-small"
+      (click)="start.value='';
+      end.value='';
+      filterTicketNumber.value='';
+      clearFilter()"
+      [disabled]="!isValid"
+      >Очистить фильтр</button>
+ 
+  
 </div>
 <br>

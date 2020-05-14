@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers} from '@angular/http';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpParams } from '@angular/common/http'
 import {map} from 'rxjs/operators'
 import { Observable } from 'rxjs';
 import { Ticket } from './shared/ticket';
@@ -54,4 +54,14 @@ export class TicketService {
       .pipe(map(res => res.json()))
   }
 
+
+  fetch(params: any = {}): Observable<Ticket[]> {
+    return this.httpClient.get<Ticket[]>(
+      'http://localhost:5000/hd/ticket/all', 
+       {
+      params: new HttpParams({
+        fromObject: params
+      })
+    })
+  }
 }
